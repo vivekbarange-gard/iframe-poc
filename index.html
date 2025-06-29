@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>External Iframe Page</title>
+  <meta charset="UTF-8" />
+  <title>External Page with Salesforce Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    a {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <h2>External Website Inside Iframe</h2>
-    <p>This page sends a postMessage with the Salesforce claim URL to the parent window.</p>
+  <h2>External Page inside iframe</h2>
+  <p>
+    Click the link below to navigate the Salesforce parent page to a record detail:
+  </p>
 
-    <button id="sendMessageBtn">Send Claim URL to Parent</button>
+  <a href="#" id="navigateLink">Go to Salesforce Claim Record</a>
 
-    <script>
-        const button = document.getElementById('sendMessageBtn');
+  <script>
+    const recordId = '5003j00001ABCdE';  // Replace with actual Salesforce record ID
 
-        button.addEventListener('click', () => {
-            const message = {
-                detailPageUrl: 'https://yourSalesforceInstance.lightning.force.com/lightning/r/Claim/12345/view'
-            };
+    document.getElementById('navigateLink').addEventListener('click', function(event) {
+      event.preventDefault();
 
-            // Send message to parent window
-            // Replace '*' with your LWC origin for better security, e.g. 'https://yourDomain.my.salesforce.com'
-            window.parent.postMessage(message, '*');
-        });
-    </script>
+      // Send the recordId to the parent window (Salesforce LWC)
+      window.parent.postMessage(
+        { navigateToRecordId: recordId },
+        '*'  // For production, replace '*' with your Salesforce origin for security
+      );
+    });
+  </script>
 </body>
 </html>
