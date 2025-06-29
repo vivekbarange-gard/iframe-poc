@@ -1,39 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>External Page with Salesforce Link</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    a {
-      color: blue;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  </style>
-</head>
+<head><meta charset="UTF-8" /><title>Iframe Page</title></head>
 <body>
-  <h2>External Page inside iframe</h2>
-  <p>
-    Click the link below to navigate the Salesforce parent page to a record detail:
-  </p>
-
-  <a href="#" id="navigateLink">Go to Salesforce Claim Record</a>
-
+  <a href="#" id="link">Click here</a>
   <script>
-    const recordId = '5003j00001ABCdE';  // Replace with actual Salesforce record ID
-
-    document.getElementById('navigateLink').addEventListener('click', function(event) {
-      event.preventDefault();
-
-      // Send the recordId to the parent window (Salesforce LWC)
-      window.parent.postMessage(
-        { navigateToRecordId: recordId },
-        '*'  // For production, replace '*' with your Salesforce origin for security
-      );
+    document.getElementById('link').addEventListener('click', e => {
+      e.preventDefault();
+      console.log('Link clicked inside iframe');  // This shows if click works
+      window.parent.postMessage({ navigateToRecordId: '001XXXXXXXXXXXXXXX' }, '*');
     });
   </script>
 </body>
