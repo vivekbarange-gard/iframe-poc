@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>External Iframe Page</title>
+</head>
+<body>
+    <h2>External Website Inside Iframe</h2>
+    <p>This page sends a postMessage with the Salesforce claim URL to the parent window.</p>
+
+    <button id="sendMessageBtn">Send Claim URL to Parent</button>
+
+    <script>
+        const button = document.getElementById('sendMessageBtn');
+
+        button.addEventListener('click', () => {
+            const message = {
+                detailPageUrl: 'https://yourSalesforceInstance.lightning.force.com/lightning/r/Claim/12345/view'
+            };
+
+            // Send message to parent window
+            // Replace '*' with your LWC origin for better security, e.g. 'https://yourDomain.my.salesforce.com'
+            window.parent.postMessage(message, '*');
+        });
+    </script>
+</body>
+</html>
