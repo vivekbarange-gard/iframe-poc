@@ -24,17 +24,4 @@
     Go to Salesforce Record
   </a>
 </body>
-
-<head><meta charset="UTF-8" /><title>Iframe Page</title></head>
-<body>
-  <a href="#" id="link">Go to Salesforce Record</a>
-  <script>
-    document.getElementById('link').addEventListener('click', e => {
-      e.preventDefault();
-      console.log('Link clicked inside iframe');  // This shows if click works
-      window.parent.postMessage({ navigateToRecordId: '001XXXXXXXXXXXXXXX' }, '*');
-    });
-  </script>
-</body>
-
 </html>
