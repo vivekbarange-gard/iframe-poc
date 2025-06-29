@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /><title>Iframe Page</title></head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Direct Redirect Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    a {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 18px;
+    }
+  </style>
+</head>
 <body>
-  <a href="#" id="link">Click here</a>
-  <script>
-    document.getElementById('link').addEventListener('click', e => {
-      e.preventDefault();
-      console.log('Link clicked inside iframe');  // This shows if click works
-      window.parent.postMessage({ navigateToRecordId: '001XXXXXXXXXXXXXXX' }, '*');
-    });
-  </script>
+  <h2>External Page Inside Iframe</h2>
+  <p>Click the link below to redirect the entire Salesforce page to the record detail:</p>
+
+  <a href="#" onclick="window.top.location.href='https://yourDomain.lightning.force.com/lightning/r/0013j00000ABCDE/view'; return false;">
+    Go to Salesforce Record
+  </a>
 </body>
 </html>
