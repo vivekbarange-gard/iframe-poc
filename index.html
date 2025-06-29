@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!--<head>
   <meta charset="UTF-8" />
   <title>Direct Redirect Link</title>
   <style>
@@ -23,5 +23,18 @@
   <a href="#" onclick="window.top.location.href='./claim-details?ba=P%26I&id=001UE00000QM21VYAT&claimId=a5CUE00000044Bc2AI&PreviousPage=claims__c&isGlobalSearch'; return false;">
     Go to Salesforce Record
   </a>
+</body>-->
+
+<head><meta charset="UTF-8" /><title>Iframe Page</title></head>
+<body>
+  <a href="#" id="link">Go to Salesforce Record</a>
+  <script>
+    document.getElementById('link').addEventListener('click', e => {
+      e.preventDefault();
+      console.log('Link clicked inside iframe');  // This shows if click works
+      window.parent.postMessage({ navigateToRecordId: '001XXXXXXXXXXXXXXX' }, '*');
+    });
+  </script>
 </body>
+
 </html>
